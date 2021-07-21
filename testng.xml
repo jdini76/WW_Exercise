@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="WW Automatiomn" verbose="1">
+	<test name="WW Tests">
+	<parameter name="browser" value="chrome" />  <!-- edge, chrome, firefox -->
+		<groups>
+			<run>
+				<include name="All" />  <!-- Options are All and Smoke -->
+			</run>
+		</groups>
+		<classes>
+			<class name="tests.Validate_Studio_Location"></class>
+		</classes>
+
+	</test>
+</suite>
