@@ -22,7 +22,7 @@ public class Validate_Studio_Location extends BaseClass	{
 	}
 	
 	
-	@Test(enabled=true,groups= {"All"})
+	@Test(enabled=true,groups= {"All","Smoke"})
 	public void validatePageTitle() {
 		System.out.println("######## RUNNING TEST VALIDATE PAGE TITLE #########");
 		FindStudioPage findStudio = new FindStudioPage(Driver);
