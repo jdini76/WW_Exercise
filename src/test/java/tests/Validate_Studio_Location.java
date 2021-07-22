@@ -15,9 +15,13 @@ public class Validate_Studio_Location extends BaseClass	{
 	FunctionLibrary func = new FunctionLibrary();
 	@AfterMethod(alwaysRun = true)
 	public void resetPage() {
-	
+	try {
 		HeaderPage headerPage = new HeaderPage(Driver);
 		headerPage.goToLocationSearch();
+	}catch (Exception e){
+		func.loginfo("Unable to reset");
+	}
+		
 		
 	}
 	
@@ -27,7 +31,7 @@ public class Validate_Studio_Location extends BaseClass	{
 		System.out.println("######## RUNNING TEST VALIDATE PAGE TITLE #########");
 		FindStudioPage findStudio = new FindStudioPage(Driver);
 		System.out.println("Page Title: "+findStudio.getPageTitle());
-		Assert.assertTrue(findStudio.getPageTitle().contains("Find WW Studios & Meetings Near You | WW USA"));
+		Assert.assertTrue(findStudio.getPageTitle().contains("Find WWÂ Studios & Meetings Near You | WW USA"));
 		
 	}
 	
