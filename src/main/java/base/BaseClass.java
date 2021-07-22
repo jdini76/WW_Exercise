@@ -38,10 +38,10 @@ public class BaseClass {
 	}
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters("browser")
-	public void ClassSetup(String browser) {
+	@Parameters({"platform","browser"})
+	public void ClassSetup(String platform,String browser) {
 
-		openBrowser(browser, appProps.getProperty("WWURL"));
+		openBrowser(platform,browser, appProps.getProperty("WWURL"));
 	}
 
 	@BeforeTest(alwaysRun = true)
@@ -49,34 +49,53 @@ public class BaseClass {
 
 	}
 
-	private void openBrowser(String Browser, String URL) {
-		if (Browser.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", appProps.getProperty("ChromeDriver"));
-			Driver = new ChromeDriver();
-			// File file = new File(URL);
-			// URL = file.getAbsolutePath();
-			functions.loginfo(URL);
-			Driver.get(URL);
-			Driver.manage().window().maximize();
-		} else if (Browser.equalsIgnoreCase("Edge")) {
-			System.setProperty("webdriver.edge.driver", appProps.getProperty("EdgeDriver"));
-			Driver = new EdgeDriver();
-			functions.loginfo(URL);
-			Driver.get(URL);
-			Driver.manage().window().maximize();
-		} else if (Browser.equalsIgnoreCase("Firefox")) {
-			System.setProperty("webdriver.gecko.driver", appProps.getProperty("FirefoxDriver"));
-			Driver = new FirefoxDriver();
-			// File file = new File(URL);
-			// URL = file.getAbsolutePath();
-			functions.loginfo(URL);
-			Driver.get(URL);
-			Driver.manage().window().maximize();
-		} else {
-			functions.loginfo("There was no options for browser " + Browser);
+	private void openBrowser(String Platform, String Browser, String URL) {
+		if (Platform.equalsIgnoreCase("Windows")) {
+			if (Browser.equalsIgnoreCase("Chrome")) {
+				System.setProperty("webdriver.chrome.driver", appProps.getProperty("ChromeDriverWin"));
+				Driver = new ChromeDriver();
+								
+			} else if (Browser.equalsIgnoreCase("Edge")) {
+				System.setProperty("webdriver.edge.driver", appProps.getProperty("EdgeDriverWin"));
+				Driver = new EdgeDriver();
+				
+			} else if (Browser.equalsIgnoreCase("Firefox")) {
+				System.setProperty("webdriver.gecko.driver", appProps.getProperty("FirefoxDriverWin"));
+				Driver = new FirefoxDriver();
+				
+			} else {
+				functions.loginfo("There was no options for browser " + Browser);
 
+			}
+			
+		}else if (Platform.equalsIgnoreCase("Mac")) {
+			if (Browser.equalsIgnoreCase("Chrome")) {
+				System.setProperty("webdriver.chrome.driver", appProps.getProperty("ChromeDriverMac"));
+				Driver = new ChromeDriver();
+								
+			}else if (Browser.equalsIgnoreCase("Edge")) {
+				functions.loginfo("There was no options for browser " + Browser + " on Mac platform.");
+//				System.setProperty("webdriver.edge.driver", appProps.getProperty("EdgeDriverWin"));
+//				Driver = new EdgeDriver();
+				
+			} else if (Browser.equalsIgnoreCase("Firefox")) {
+				System.setProperty("webdriver.gecko.driver", appProps.getProperty("FirefoxDriverMac"));
+				Driver = new FirefoxDriver();
+				
+			}else if(Browser.equalsIgnoreCase("Safari")) {
+				functions.loginfo("There currently is no options for browser " + Browser + " on Mac platform.");
+				
+			
+			}else {
+				functions.loginfo("There was no options for browser " + Browser);
+
+			}
 		}
-
+		
+		
+		functions.loginfo(URL);
+		Driver.get(URL);
+		Driver.manage().window().maximize();
 	}
 
 	@AfterMethod(alwaysRun = true)

@@ -2,6 +2,7 @@
 
 <suite name="WW Automatiomn" verbose="1">
 	<test name="WW Tests">
+	<parameter name="platform" value="windows" />
 	<parameter name="browser" value="chrome" />  <!-- edge, chrome, firefox -->
 		<groups>
 			<run>
