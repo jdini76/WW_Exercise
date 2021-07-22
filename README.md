@@ -1,5 +1,6 @@
 # WW_Exercise
-#Instructions
+# Instructions
+
 -To run, import to exclipes with TestNG and Maven
 -Run as Maven project using clean install goals
 -Open TestNG.xml and modify the parameters for platform and browser. platform Windows or Mac and Browser Chrome, edge or firefox for Windows and Chrome or Firefox for Mac.
